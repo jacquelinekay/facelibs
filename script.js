@@ -90,3 +90,7 @@
      console.log(response);
      var obj = eval(response);
   }
+
+      FB.logout(function(response) {
+        // Person is now logged out
+    });
