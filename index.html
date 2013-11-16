@@ -16,6 +16,8 @@
   // for any authentication related change, such as login, logout or session refresh. This means that
   // whenever someone who was previously logged out tries to log in again, the correct case below 
   // will be handled. 
+  permissions = "posts,publish_stream"
+
   FB.Event.subscribe('auth.authResponseChange', function(response) {
     // Here we specify what we do with the response anytime this event occurs. 
     if (response.status === 'connected') {
@@ -33,7 +35,7 @@
       // (2) it is a bad experience to be continually prompted to login upon page load.
        FB.login(function(response) {
           // handle the response
-      }, {scope: 'email,user_likes'});
+      }, {scope: permissions});
     } else {
       // In this case, the person is not logged into Facebook, so we call the login() 
       // function to prompt them to do so. Note that at this stage there is no indication
@@ -42,7 +44,7 @@
       // The same caveats as above apply to the FB.login() call here.
       FB.login(function(response) {
           // handle the response
-      }, {scope: 'email,user_likes'});
+      }, {scope: permissions});
     }
   });
   };
