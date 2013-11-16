@@ -6,7 +6,6 @@
   window.fbAsyncInit = function() {
   FB.init({
     appId      : 438476956258780,
-    channelUrl : 54.221.103.142/channel.html,
     status     : true, // check login status
     cookie     : true, // enable cookies to allow the server to access the session
     xfbml      : true  // parse XFBML
@@ -16,7 +15,7 @@
   // for any authentication related change, such as login, logout or session refresh. This means that
   // whenever someone who was previously logged out tries to log in again, the correct case below 
   // will be handled. 
-  permissions = "posts,publish_stream"
+  permissions = "read_stream"
 
   FB.Event.subscribe('auth.authResponseChange', function(response) {
     // Here we specify what we do with the response anytime this event occurs. 
