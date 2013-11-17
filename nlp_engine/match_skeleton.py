@@ -9,10 +9,8 @@ from SimpleHTTPServer import SimpleHTTPRequestHandler
 from nltk.corpus import gutenberg
 import random
 
-class FaceLibsHandler(BaseHTTPServer.BaseHTTPRequestHandler):
-   
+class DataTracker():
     def __init__(self):
-        super().__init__()
         self.num_passages = 10
         self.passagesize = 1000
         self.maxpeople = 10
@@ -22,30 +20,21 @@ class FaceLibsHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         self.skeletons = []
         self.index_dicts = []
         #Load all of the things into memory
-        j = 0
+        #j = 0
         for fileid in gutenberg.fileids():
-            for i in range(self.num_passages):
-                filename = textid+'_'+str(k) +'_skeleton.txt' 
+            for k in range(self.num_passages):
+                filename = fileid+'_'+str(k) +'_skeleton.txt' 
                 f = open(filename, 'r')
-                self.skeletons[j] = f.split(" ")
+                self.skeletons.append(f.read().split(" ")) 
                 f.close()
-                filename = textid+'_'+str(k) +'_indices.txt'
+                filename = fileid+'_'+str(k) +'_indices.txt'
                 f = open(filename, 'r')
-                self.index_dicts[j] = {}
+                self.index_dicts.append({}) 
                 for line in f.readlines():
                     splitted = line.split()
-                    self.index_dicts[j][splitted[0]] = splitted[1:]
+                    self.index_dicts[-1][splitted[0]] = splitted[1:]
                 f.close()
-                j+=1
-
-    def do_GET(s):
-        intext = s.rfile.read()
-        outtext = self.pick_match_skeleton(intext)
-        s.send_response(200)
-        s.send_header("Content-type", "text")
-        s.end_headers()
-        print "Sending outtext: " + outtext
-        s.wfile.write(outtext)
+                #j+=1
 
     def pick_match_skeletons(self, intext):
         #pick a random number
@@ -61,6 +50,23 @@ class FaceLibsHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 outtext[index] = key
         return outtext
 
+class FaceLibsHandler(BaseHTTPServer.BaseHTTPRequestHandler):
+
+    def do_GET(s):
+        global tracker
+        #intext = s.rfile.read()
+        print "Got GET"
+        intext = s.headers('facelibs-request')
+        outtext = tracker.pick_match_skeleton(intext)
+        s.send_response(200)
+        s.send_header("Content-type", "text")
+        s.end_headers()
+        print "Sending outtext: " + outtext
+        s.wfile.write(outtext)
+        print s
+        return
+
+tracker = DataTracker()
 
 HandlerClass = FaceLibsHandler
 ServerClass  = BaseHTTPServer.HTTPServer
@@ -72,7 +78,7 @@ else:
     port = 80
 
 #NOT SURE IF THIS WORKS LOL
-server_address = ('127.0.0.1', port)
+server_address = ('localhost', port)
 HandlerClass.protocol_version = Protocol
 httpd = ServerClass(server_address, HandlerClass)
 
