@@ -87,7 +87,6 @@
     text-decoration: none;
     color: #336699;
   }
-  #fb-like {
-    float: left;
+  .fb-like {
     overflow: hidden;
   }
