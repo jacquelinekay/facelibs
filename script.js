@@ -1,13 +1,6 @@
 //permissions = "read_stream,user_status,user_friends,export_stream"
 //var permissions = 'read_stream,user_status,publish_stream,export_stream'
 
-function unhide(divID) {
-  var item = document.getElementById(divID);
-    if (item) {
-      item.className=(item.className=='hidden')?'unhidden':'hidden';
-    }
-}
-
 function makeHttpObject() {
     try {return new XMLHttpRequest();}
     catch (error) {}
@@ -37,7 +30,7 @@ function logoutFunction(){
     console.log("Goodbye");
     FB.logout(function(response) {
         // Person is now logged out
-        unhide('logoutclass');
+        alert("You are now logged out :(");
     });
 }
 
@@ -71,7 +64,6 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
       // have logged in to the app.
       console.log(response);
       runApp(response);
-      unhide('logoutclass');
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call
       // FB.login() to prompt them to do so. 
