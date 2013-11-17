@@ -1,7 +1,7 @@
   #title {
-          height: 13em;
-          width: 42em;
-          margin-left: 20em;
+    height: 13em;
+    width: 42em;
+    margin-left: 20em;
   }
   body{
 	  background: lightblue;
@@ -11,8 +11,16 @@
 	  padding: 2em 2em 2em 2em;
 	  background: #FAFAFA;
 	  width: 30em;
-	  height: 12em;
+	  
 	  margin-left: 22.5em;
+  }
+  #storybox {
+    background: #F7F8E0;
+    text-align: center;
+    width: 100%;
+    margin-top: 1em;
+    display: inline-block;
+    visibility: hidden;
   }
   #logout {
   	background: #336699;
