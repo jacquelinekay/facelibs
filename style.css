@@ -25,7 +25,7 @@
     width: 100%;
     margin-top: 1em;
     display: inline-block;
-    visibility: hidden;
+    overflow: visible;
   }
   #logout {
   	background: #336699;
