@@ -1,5 +1,4 @@
-permissions = "read_stream,user_status,user_friends,export_stream"
-//var permissions = 'read_stream,user_status,publish_stream,export_stream'
+var permissions = "read_stream,user_status,user_friends,export_stream"
 
 function makeHttpObject() {
     try {return new XMLHttpRequest();}
@@ -40,8 +39,22 @@ function handleHttpFailure(statustype, statusText){
 }
 
 function parseResponse(response){
-  console.log(response);
-  var obj = eval(response);
+    //console.log(response);
+    //TODO: Don't hardcode this dumbass
+    console.log(response);
+    var map = {};
+    for (var i = 0; i < 25; i++){
+        var likearr = response.data[i].likes.data;
+        for (var j = 0; j < likearr.length; j++){
+            var name = likearr[i].name;
+            if (map[name] == undefined){
+                map[name] = 1;
+            } else {
+                map[name] += 1;
+            }
+        } 
+    }
+    console.log(map)
 }
 
 window.fbAsyncInit = function() {
@@ -77,7 +90,7 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
           // handle the response
           console.log(response);
           runApp(response);
-      }, {scope:"user_status"});
+      }, {scope:permissions});
     } else {
       // In this case, the person is not logged into Facebook, so we call the login() 
       // function to prompt them to do so. Note that at this stage there is no indication
@@ -89,7 +102,7 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
           console.log(response);
           unhide('logoutclass');
           runApp(response);
-      }, {scope:"user_status"});
+      }, {scope:permissions});
     }
   });
 };
@@ -115,10 +128,7 @@ function runApp(response) {
         });
     FB.api(
         '/me/posts?fields=likes.fields(name)'
-        , function(data){
-            console.log(data);
-        }
-        /*parseResponse*/
+        , parseResponse
     );
 }
 
