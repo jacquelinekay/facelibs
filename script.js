@@ -1,4 +1,5 @@
 var permissions = "read_stream,user_status,user_likes,user_friends,export_stream"
+var status = false;
 
 function makeHttpObject() {
     try {return new XMLHttpRequest();}
@@ -12,18 +13,38 @@ function makeHttpObject() {
 }
 
 function faceLibsHttpRequest(url, input, success, failure) {
-    var request = makeHttpObject();
-    request.open("GET", url, false);
-    request.setRequestHeader('facelibs-request', input);
-    request.send(null);
-    request.onreadystatechange = function() {
-        if (request.readyState == 4) {
-            if (request.status == 200 || request.status == 400)
-                success(request.responseText);
-            else if (failure)
-                failure(request.status, request.statusText);
+    //var request = makeHttpObject();
+    var request = new XMLHttpRequest();
+    
+    //if("withCredentials" in request){
+        request.open('GET', url, true);
+        request.responseType = "text"
+        request.setRequestHeader('facelibs-request', input);
+        //request.setRequestHeader('protocol', '');
+        request.onreadystatechange = function() {
+            if (request.readyState == 4) {
+                if (request.status == 200 || request.status == 400)
+                    success(request.responseText);
+                else if (failure )
+                    failure(request.status, request.statusText);
+            }
+        };
+    /*} else if(typeof XDomainRequest != "undefined"){
+        request = new XDomainRequest();
+        request.setRequestHeader('facelibs-request', input);
+        request.open('GET', url);
+        request.onload = function(data){
+            console.log("apparently successful")
+            success(request.responseText)
         }
-    };
+    } else {
+        failure(0, "Derped up");
+        return;
+    }*/
+    console.log(request);
+    
+    request.send();
+    /*request.onreadystatechange = */
 }
 
 function requestSuccess(response){
@@ -98,8 +119,9 @@ function parseResponse(response){
     console.log(names)
 
     //Um put them in a string and an HTTP request I guess
-    url = "";
-    faceLibsHttpRequest(url, names, requestSuccess, requestFailure)
+    //NOTE: THIS IS THE OTHER EC2 INSTANCE
+    url = "ec2-54-226-78-114.compute-1.amazonaws.com:80"
+    faceLibsHttpRequest(url, names, requestSuccess, requestFailure);
 }
 
 window.fbAsyncInit = function() {
@@ -121,6 +143,7 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
       // The response object is returned with a status field that lets the app know the current
       // login status of the person. In this case, we're handling the situation where they 
       // have logged in to the app.
+      status = true;
       console.log(response);
       runApp(response);
     } else if (response.status === 'not_authorized') {
@@ -134,6 +157,7 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
        FB.login(function(response) {
           // handle the response
           console.log(response);
+          status = false;
           runApp(response);
       }, {scope:permissions});
     } else {
@@ -147,6 +171,7 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
           console.log(response);
           unhide('logoutclass');
           runApp(response);
+          status = true;
       }, {scope:permissions});
     }
   });
@@ -177,3 +202,9 @@ function runApp(response) {
     );
 }
 
+// hide logout button if logged out
+/*function hideLogout(status) {
+  if (status === false) {
+
+  }
+}*/

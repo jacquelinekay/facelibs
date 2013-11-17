@@ -15,7 +15,7 @@ maxnouns = 5
 def removeID(name):
     return name[0:len(name)-len(ID_str)]"""
 
-for textid in gutenberg.fileids():
+for textid in gutenberg.fileids()[3:]:
     text = gutenberg.words(textid)
 
     print "Size of {0}: {1}".format(textid, len(text))
