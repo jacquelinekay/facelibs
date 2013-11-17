@@ -115,8 +115,9 @@ function parseResponse(response){
     for (var i = 0; i < indices.length; i++){
         //parse the string
         var foo = indices[i].split(" ");
+        //console.log(foo);
         for (var j = 1; j < foo.length; j++){
-            passage[foo[j]] = foo[0];
+            passage[Number(foo[j])] = names[i];
         }
     }
     output = passage.join(" ");
