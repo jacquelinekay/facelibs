@@ -3,9 +3,11 @@
 #There will be 10 passages per text
 #indices.txt holds a guide to matching the things
 #passage.txt holds the skeleton
-import BaseHTTPServer, copy
-from sys import argv
-from SimpleHTTPServer import SimpleHTTPRequestHandler
+#import BaseHTTPServer, copy
+#from sys import argv
+#from SimpleHTTPServer import SimpleHTTPRequestHandler
+
+import cherrypy
 from nltk.corpus import gutenberg
 import random
 
@@ -50,6 +52,20 @@ class DataTracker():
                 outtext[index] = key
         return outtext
 
+tracker = DataTracker()
+
+class FaceLibsServer(object):
+    def _get_skeleton(self):
+        global tracker;
+        req = cherrypy.request.headers['facelibs-request']
+        return tracker.pick_match_skeletons(req);
+
+    def index(self):
+        cherrypy.response.headers['Content-type'] = 'text'
+        return self.get_skeleton()
+    index.exposed=True
+
+"""
 class FaceLibsHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
     def do_GET(s):
@@ -85,7 +101,7 @@ httpd = ServerClass(server_address, HandlerClass)
 sa = httpd.socket.getsockname()
 
 print "Serving HTTP on", sa[0], "port", sa[1], "..."
-httpd.serve_forever()
+httpd.serve_forever()"""
 
 #Receive client requests
 
