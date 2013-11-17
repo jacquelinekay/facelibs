@@ -40,7 +40,7 @@ class FaceLibsHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 j+=1
 
     def do_GET(s):
-        intext = s.rfile.read()
+        intext = s.headers('facelibs-request')
         outtext = self.pick_match_skeleton(intext)
         s.send_response(200)
         s.send_header("Content-type", "text")
@@ -53,7 +53,7 @@ class FaceLibsHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         #parse intext
         #Assuming we get innames in as a list, not as JSON
         #Assume names are in order of descending frequency
-        names = intext.split(" ")
+        names = intext.split("/")
         #match with index
         outtext = copy.deepcopy(self.skeletons[i]) #check syntax
         for key, vallist in self.index_dicts[i]:

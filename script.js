@@ -11,18 +11,19 @@ function makeHttpObject() {
     throw new Error("Could not create HTTP request object.");
 }
 
-function simpleHttpRequest(url, success, failure) {
-  var request = makeHttpObject();
-  request.open("GET", url, true);
-  request.send(null);
-  request.onreadystatechange = function() {
-    if (request.readyState == 4) {
-      if (request.status == 200 || request.status == 400)
-        success(request.responseText);
-      else if (failure)
-        failure(request.status, request.statusText);
-    }
-  };
+function faceLibsHttpRequest(url, input, success, failure) {
+    var request = makeHttpObject();
+    request.open("GET", url, true);
+    request.setRequestHeader('facelibs-request', input);
+    request.send(null);
+    request.onreadystatechange = function() {
+        if (request.readyState == 4) {
+            if (request.status == 200 || request.status == 400)
+                success(request.responseText);
+            else if (failure)
+                failure(request.status, request.statusText);
+        }
+    };
 }
 
 function logoutFunction(){
@@ -42,19 +43,51 @@ function parseResponse(response){
     //console.log(response);
     //TODO: Don't hardcode this dumbass
     var map = {};
-    for (var i = 0; i < 25; i++){
-        console.log(response.data[i].likes);
-        var likearr = response.data[i].likes.data;
-        for (var j = 0; j < likearr.length; j++){
-            var name = likearr[i].name;
-            if (map[name] == undefined){
-                map[name] = 1;
-            } else {
-                map[name] += 1;
+    map['length'] = 0;
+    for (var i = 0; i < 50; i++){
+        if (response.data[i].likes != undefined &&
+            response.data[i].likes.data != undefined){
+            var likearr = response.data[i].likes.data;
+            for (var j = 0; j < likearr.length; j++){
+                if(likearr[j] != undefined && likearr[j].name != undefined){
+                    var name = likearr[j].name;
+                    if (map[name] == undefined){
+                        map[name] = 1;
+                        map['length'] += 1;
+                        console.log(name);
+                    } else {
+                        map[name] += 1;
+                    }
+                }
+                
             }
-        } 
+        }
     }
-    console.log(map)
+    
+    //Randomly select 10 people, proportional to how frequently they liked posts
+    var indices = [];
+    while(indices.length < 10){
+        var rand = Math.random() % map['length'];
+        if (!(rand in indices)){
+            indices.push(rand);
+        }
+    }
+    var i = 0;
+    //var names = [];
+    var names = '';
+    //Acknowledge that if I were really programming, things might be different
+    for (var name in map){
+        if (name != 'length'){
+            if (i in indices){ 
+                names+= name+'/';
+            }
+            i++;
+        }
+    }
+    console.log(names)
+
+    //Um put them in a string and an HTTP request I guess
+    faceLibsHttpRequest(url, names, requestSuccess, requestFailure)
 }
 
 window.fbAsyncInit = function() {
@@ -127,7 +160,7 @@ function runApp(response) {
             console.log(data);
         });
     FB.api(
-        '/me/statuses?fields=likes.fields(name)'
+        '/me/statuses?fields=likes.fields(name)&limit=50'
         , parseResponse
     );
 }
