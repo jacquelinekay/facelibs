@@ -26,6 +26,9 @@
   	margin-right: 8em;
   	margin-top: 0.3em;
   }
+  #logout:hover{
+    background: #203282;
+  }
   #login {
   	margin-top: 0.5em;
   	display: block;
