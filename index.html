@@ -31,7 +31,8 @@
   	margin-top: 0.3em;
   }
   #login {
-  	margin-left: 12em;
+  	background-image: "active_600.png";
+  	margin-left: 5em;
   	margin-top: 0.5em;
   }
   #Generate {
@@ -78,7 +79,7 @@
 
 <button onclick="logoutFunction()" type="button" id="logout">Logout</button>
 <div id="innerbox">
-<fb:login-button  id="login" max-rows="1" scope="user_status"></fb:login-button>
+<fb:login-button show-faces="false" id="login" max-rows="1" scope="user_status"></fb:login-button>
 <button type="button" id="Generate">Generate Story</button>
 <button type="button" id="Post">Post to Facebook</button>
 </div> <!-- end of inner box -->
