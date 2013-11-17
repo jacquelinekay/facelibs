@@ -2,7 +2,7 @@
     height: 13em;
     width: 42em;
     overflow: hidden;
-    margin-left: 16em;
+    margin-left: 15.5em;
   }
   #content {
     overflow: hidden;
@@ -55,6 +55,7 @@
   	display: block;
   	padding-top: 3em;
     overflow: hidden;
+    margin-left: 5em;
   }
   #Generate {
   	float: left;
