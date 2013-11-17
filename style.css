@@ -25,6 +25,7 @@
   	float: right;
   	margin-right: 8em;
   	margin-top: 0.3em;
+    overflow: hidden;
   }
   #logout:hover{
     background: #203282;
