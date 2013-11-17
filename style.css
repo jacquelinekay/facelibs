@@ -15,7 +15,7 @@
 	  background: #FAFAFA;
 	  width: 30em;
     margin-left: 20.5em;
-    text-align: left;s
+    text-align: left;
   }
   #storybox {
     background: #F2F5A9;
@@ -27,6 +27,7 @@
     display: inline-block;
     font-size: 13px;
     border: grey;
+    overflow: scroll;
   }
   #logout {
   	background: #336699;
@@ -93,11 +94,11 @@
    margin-top: 2em;
    margin-right: 1em;
   }
-  #Jackie, #Rachel {
-  text-decoration: none;
-  color: #336699;
+ #Jackie, #Rachel {
+   text-decoration: none;
+   color: #336699;
   }
-  .fb-like {
-    overflow: hidden;
-    position: absolute;
-  }
+ .fb-like {
+   overflow: hidden;
+   position: absolute;
+ }
