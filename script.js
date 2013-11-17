@@ -31,6 +31,7 @@ function logoutFunction(){
     FB.logout(function(response) {
         // Person is now logged out
         alert("You are now logged out :(");
+        location.reload();
     });
 }
 
