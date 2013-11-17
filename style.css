@@ -6,6 +6,7 @@
   body{
 	  background: lightblue;
 	  font-family: 'Lato', sans-serif;
+    overflow: hidden;
   }
   #innerbox {
 	  padding: 2em 2em 2em 2em;
@@ -88,4 +89,5 @@
   }
   #fb-like {
     float: left;
+    overflow: hidden;
   }
