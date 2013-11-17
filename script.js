@@ -1,13 +1,5 @@
 var permissions = "read_stream,user_status,user_likes,user_friends,export_stream"
 
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=438476956258780";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
 function makeHttpObject() {
     try {return new XMLHttpRequest();}
     catch (error) {}
@@ -21,7 +13,7 @@ function makeHttpObject() {
 
 function faceLibsHttpRequest(url, input, success, failure) {
     var request = makeHttpObject();
-    request.open("GET", url, true);
+    request.open("GET", url, false);
     request.setRequestHeader('facelibs-request', input);
     request.send(null);
     request.onreadystatechange = function() {
@@ -32,6 +24,13 @@ function faceLibsHttpRequest(url, input, success, failure) {
                 failure(request.status, request.statusText);
         }
     };
+}
+
+function requestSuccess(response){
+    console.log("Request success: " + response)
+}
+function requestFailure(stat, statusText){
+    console.log("Request failure: " + statusText);
 }
 
 function logoutFunction(){
@@ -74,7 +73,8 @@ function parseResponse(response){
     
     //Randomly select 10 people, proportional to how frequently they liked posts
     var indices = [];
-    while(indices.length < 10){
+
+    while(indices.length < Math.min(9, map['length'])){
         var rand = Math.random() % map['length'];
         if (!(rand in indices)){
             indices.push(rand);
@@ -83,6 +83,9 @@ function parseResponse(response){
     var i = 0;
     //var names = [];
     var names = '';
+    FB.api('/me?fields=first_name', function(data){
+        names += data.first_name +'/'
+    });
     //Acknowledge that if I were really programming, things might be different
     for (var name in map){
         if (name != 'length'){
@@ -95,6 +98,7 @@ function parseResponse(response){
     console.log(names)
 
     //Um put them in a string and an HTTP request I guess
+    url = "";
     faceLibsHttpRequest(url, names, requestSuccess, requestFailure)
 }
 

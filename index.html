@@ -1,20 +1,19 @@
 <html>
 <head>
   <title>Face Libs</title>
-  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="shortcut icon" href="http://ec2-54-221-103-142.compute-1.amazonaws.com/favicon.ico" />
   <link href="style.css" rel="stylesheet" type="text/css" />
   </style>
 </head>
 
 <body>
+<div id="content">
 <div id="fb-root"></div>
 
 <script type='text/javascript' src="script.js"></script>
-
-<img src="logo.jpg" id="title"/>
-<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
-
 <div class="logoutclass"><button onclick="logoutFunction()" type="button" id="logout">Logout</button></div>
+<img src="logo.jpg" id="title" align="center"/>
+<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="true"></div>
 
 <div id="innerbox">
   <fb:login-button show-faces="true" id="login" size="xlarge" max-rows="1" scope="read_stream,user_status"></fb:login-button>
@@ -27,5 +26,6 @@
 </div> <!-- end of inner box -->
 </body>
 
-<footer id="footer">Don't worry, we are too lazy to store or sell your info :) <br /> Love, <a href="http://www.sccs.swarthmore.edu/users/14/jkay/index.html" target="_blank" id="Jackie">Jackie</a> and <a href="http://cs.swarthmore.edu/wics/HTML/webmaster.html" target="_blank" id="Rachel">Rachel</a></footer>
+<footer id="footer" align="center">Don't worry, we are too lazy to store or sell your info :) <br /> Love, <a href="http://www.sccs.swarthmore.edu/users/14/jkay/index.html" target="_blank" id="Jackie">Jackie</a> and <a href="http://cs.swarthmore.edu/wics/HTML/webmaster.html" target="_blank" id="Rachel">Rachel</a></footer>
+</div> <!-- end of content -->
 </html>
