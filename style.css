@@ -55,7 +55,7 @@
   	display: block;
   	padding-top: 3em;
     overflow: hidden;
-    margin-left: 11em;
+    margin-left: 12em;
   }
   #Generate {
   	float: left;
@@ -95,4 +95,5 @@
   }
   .fb-like {
     overflow: hidden;
+    position: relative;
   }
