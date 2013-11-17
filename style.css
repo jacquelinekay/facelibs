@@ -22,12 +22,9 @@
     text-align: center;
     width: 100%;
     margin-top: 1em;
-    padding: 5.5em 5.5em 5.5em 5.5em;
     font-family: 'Lato', sans-serif;
     display: inline-block;
     font-size: 13px;
-    border: grey;
-    overflow: scroll;
   }
   #logout {
   	background: #336699;
