@@ -203,8 +203,8 @@ function runApp(response) {
 }
 
 // hide logout button if logged out
-/*function hideLogout(status) {
+function hideLogout(status) {
   if (status === false) {
-
+    document.getElementById("logout").style.display = 'none';
   }
-}*/
+}
