@@ -4,7 +4,10 @@
     overflow: hidden;
     margin-left: 16em;
   }
-  
+  #content {
+    position: fixed;
+    width: 500em;
+  }
   body{
 	  background: lightblue;
 	  font-family: 'Lato', sans-serif;
