@@ -3,9 +3,9 @@
   <title>Face Libs</title>
   <style type="text/css">
   #title {
-  	height: 12em;
-  	width: 35em;
-  	margin-left: 22em;
+  	height: 13em;
+  	width: 42em;
+  	margin-left: 20em;
   }
   body{
 	background: lightblue;
@@ -14,9 +14,9 @@
   #innerbox {
 	padding: 2em 2em 2em 2em;
 	background: #FAFAFA;
-	width: 20em;
-	height: 10em;
-	margin-left: 27.5em;
+	width: 30em;
+	height: 12em;
+	margin-left: 22.5em;
   }
   #logout {
   	background: #336699;
@@ -26,19 +26,27 @@
   	width: 8em;
   	height: 2em;
   	font-size: 0.9em;
+  	float: right;
+  	margin-right: 8em;
+  	margin-top: 0.3em;
+  }
+  #login {
+  	width: 8em;
+  	height: 2em;
   }
   </style>
 </head>
 <body>
 <div id="fb-root"></div>
+<fb:login-button show-faces="true" id="login" max-rows="1" scope="user_status"></fb:login-button>
 <script type='text/javascript' src="script.js"></script>
 <img src="logo.jpg" id="title"/>
 <!--
   Below we include the Login Button social plugin. This button uses the JavaScript SDK to
   present a graphical Login button that triggers the FB.login() function when clicked. -->
-<div id="innerbox">
-<fb:login-button show-faces="true" width="200" max-rows="1" scope="user_status"></fb:login-button>
 <button onclick="logoutFunction()" type="button" id="logout">Logout</button>
+<div id="innerbox">
+
 </div> <!-- end of inner box -->
 </body>
 </html>
