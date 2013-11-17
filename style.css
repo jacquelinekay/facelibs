@@ -55,7 +55,7 @@
   	display: block;
   	padding-top: 3em;
     overflow: hidden;
-    margin-left: 9em;
+    margin-left: 11em;
   }
   #Generate {
   	float: left;
@@ -90,8 +90,8 @@
    margin-right: 1em;
   }
   #Jackie, #Rachel {
-    text-decoration: none;
-    color: #336699;
+  text-decoration: none;
+  color: #336699;
   }
   .fb-like {
     overflow: hidden;
