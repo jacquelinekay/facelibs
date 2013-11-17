@@ -6,7 +6,8 @@ function unhide(divID) {
     if (item) {
       item.className=(item.className=='hidden')?'unhidden':'hidden';
     }
-  }
+}
+
 function makeHttpObject() {
     try {return new XMLHttpRequest();}
     catch (error) {}
