@@ -1,6 +1,8 @@
 <html>
 <head>
   <title>Face Libs</title>
+  <link rel='icon' href='favicon.ico' type='image/x-icon'> 
+  <link rel='shortcut icon' href='favicon.ico' type='image/x-icon'>
   <style type="text/css">
   #title {
   	height: 13em;
@@ -31,10 +33,18 @@
   	margin-top: 0.3em;
   }
   #login {
-  	background-image: "active_600.png";
   	margin-top: 0.5em;
   	display: block;
   	margin-left: 12.5em;
+  }
+  #footer {
+  	color: gray;
+  	font-style:italic;
+  	font-family: 'Lato', sans-serif;
+  	font-size: 1em;
+  	display: block;
+  	padding-top: 3em;
+  	text-align: center;
   }
   #Generate {
   	float: left;
@@ -78,11 +88,12 @@
   Below we include the Login Button social plugin. This button uses the JavaScript SDK to
   present a graphical Login button that triggers the FB.login() function when clicked. -->
 
-<button onclick="logoutFunction()" type="button" id="logout">Logout</button>
+<div class="logoutclass"><button onclick="logoutFunction()" type="button" id="logout">Logout</button></div>
 <div id="innerbox">
-<fb:login-button show-faces="false" id="login" max-rows="1" scope="user_status"></fb:login-button>
+<fb:login-button show-faces="true" id="login" max-rows="1" scope="user_status"></fb:login-button>
 <button type="button" id="Generate">Generate Story</button>
-<button type="button" id="Post">Post to Facebook</button>
+<button type="button" id="Post" scope="export_stream">Post to Facebook</button>
 </div> <!-- end of inner box -->
 </body>
+<footer id="footer">Don't worry, we are too lazy to store or sell your info :) <br /> Love, Jackie and Rachel</footer>
 </html>

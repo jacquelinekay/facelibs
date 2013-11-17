@@ -1,6 +1,5 @@
-//permissions = "read_stream,user_status,user_friends,export_stream"
+permissions = "read_stream,user_status,user_friends,export_stream"
 //var permissions = 'read_stream,user_status,publish_stream,export_stream'
-
 
 function makeHttpObject() {
     try {return new XMLHttpRequest();}
@@ -31,6 +30,8 @@ function logoutFunction(){
     console.log("Goodbye");
     FB.logout(function(response) {
         // Person is now logged out
+        alert("You are now logged out :(");
+        location.reload();
     });
 }
 
@@ -62,7 +63,7 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
       // The response object is returned with a status field that lets the app know the current
       // login status of the person. In this case, we're handling the situation where they 
       // have logged in to the app.
-      console.log(response)
+      console.log(response);
       runApp(response);
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call
@@ -74,7 +75,7 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
       // (2) it is a bad experience to be continually prompted to login upon page load.
        FB.login(function(response) {
           // handle the response
-          console.log(response)
+          console.log(response);
           runApp(response);
       }, {scope:"user_status"});
     } else {
@@ -85,7 +86,8 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
       // The same caveats as above apply to the FB.login() call here.
       FB.login(function(response) {
           // handle the response
-          console.log(response)
+          console.log(response);
+          unhide('logoutclass');
           runApp(response);
       }, {scope:"user_status"});
     }
