@@ -50,6 +50,7 @@
   	display: block;
   	padding-top: 3em;
     overflow: hidden;
+    margin-left: 15em;
   }
   #Generate {
   	float: left;
