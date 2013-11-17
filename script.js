@@ -107,13 +107,6 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
   // This runApp() function is only called in those cases. 
 function runApp(response) {
     //make an HTTP request to get posts
-    /*var request = makeHttpObject();
-    FB.api('/me', function(response) {
-      console.log('Good to see you, ' + response.name + '.');
-      var req_url = "https://graph.facebook.com/me/?fields=posts"
-      //simpleHttpRequest(req_url, parseResponse, handleHttpFailure);
-    });*/
-    //FB.api('/me/statuses', parseResponse);
     if(response.authResponse){
         console.log("accepted requested permissoins");
     }
@@ -121,9 +114,8 @@ function runApp(response) {
             console.log(data);
         });
     FB.api(
-        { method: 'fql.query',
-          query: 'SELECT message FROM status WHERE uid=me()'
-        }, function(data){
+        '/me/posts?fields=likes.fields(name)'
+        , function(data){
             console.log(data);
         }
         /*parseResponse*/
