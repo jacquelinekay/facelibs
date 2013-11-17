@@ -1,7 +1,14 @@
 //permissions = "read_stream,user_status,user_friends,export_stream"
 //var permissions = 'read_stream,user_status,publish_stream,export_stream'
 
-
+<script type="text/javascript">
+  function unhide(divID) {
+    var item = document.getElementById(divID);
+    if (item) {
+      item.className=(item.className=='hidden')?'unhidden':'hidden';
+    }
+  }
+</script>
 function makeHttpObject() {
     try {return new XMLHttpRequest();}
     catch (error) {}
@@ -64,6 +71,7 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
       // have logged in to the app.
       console.log(response)
       runApp(response);
+      unhide('classlogin');
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call
       // FB.login() to prompt them to do so. 
@@ -87,6 +95,7 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
           // handle the response
           console.log(response)
           runApp(response);
+          unhide('classlogin');
       }, {scope:"user_status"});
     }
   });
