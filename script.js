@@ -38,6 +38,7 @@ function logoutFunction(){
     console.log("Goodbye");
     FB.logout(function(response) {
         // Person is now logged out
+        unhide('classlogin');
     });
 }
 
