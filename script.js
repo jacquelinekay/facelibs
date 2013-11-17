@@ -106,16 +106,26 @@ function parseResponse(response){
             nameindices.push(rand);
         }
     }
-    //var names = [];
-    var names = '';
+    var names = [];
     FB.api('/me?fields=first_name', function(data){
-        names += data.first_name +'/';
+        //names += data.first_name +'/';
+        names.push(data.first_name);
     });
+    var k = 0;
+    for(var name in map){
+    if (name != 'length'){
+            if (k in indices){ 
+                names.push(name);
+            }
+            k++;
+        }
+    }
+    console.log(names);
     //passage = passage.split(" ");
     for (var i = 0; i < indices.length; i++){
         //parse the string
         var foo = indices[i].split(" ");
-        //console.log(foo);
+        console.log(foo);
         for (var j = 1; j < foo.length; j++){
             passage[Number(foo[j])] = names[i];
         }
