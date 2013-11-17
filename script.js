@@ -38,7 +38,7 @@ function logoutFunction(){
     console.log("Goodbye");
     FB.logout(function(response) {
         // Person is now logged out
-        unhide('classlogin');
+        unhide('loginclass');
     });
 }
 
@@ -72,7 +72,7 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
       // have logged in to the app.
       console.log(response)
       runApp(response);
-      unhide('classlogin');
+      unhide('loginclass');
     } else if (response.status === 'not_authorized') {
       // In this case, the person is logged into Facebook, but not into the app, so we call
       // FB.login() to prompt them to do so. 
@@ -96,7 +96,7 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
           // handle the response
           console.log(response)
           runApp(response);
-          unhide('classlogin');
+          unhide('loginclass');
       }, {scope:"user_status"});
     }
   });
