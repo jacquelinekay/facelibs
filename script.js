@@ -177,6 +177,13 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
   });
 };
 
+// hide logout button if logged out
+function hideLogout(status) {
+  if (status === false) {
+    logout.style.visibility='hidden' 
+  }
+}
+
 // Load the SDK asynchronously
 (function(d){
     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
@@ -202,9 +209,4 @@ function runApp(response) {
     );
 }
 
-// hide logout button if logged out
-function hideLogout(status) {
-  if (status === false) {
-    document.getElementById(logout).style.display = 'none';
-  }
-}
+
