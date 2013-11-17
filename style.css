@@ -98,5 +98,5 @@
   }
   .fb-like {
     overflow: hidden;
-    position: relative;
+    position: absolute;
   }
