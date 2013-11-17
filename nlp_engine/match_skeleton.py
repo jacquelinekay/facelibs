@@ -9,7 +9,6 @@ from SimpleHTTPServer import SimpleHTTPRequestHandler
 from nltk.corpus import gutenberg
 import random
 
-
 class FaceLibsHandler(BaseHTTPServer.BaseHTTPRequestHandler):
    
     def __init__(self):
@@ -45,6 +44,7 @@ class FaceLibsHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         s.send_response(200)
         s.send_header("Content-type", "text")
         s.end_headers()
+        print "Sending outtext: " + outtext
         s.wfile.write(outtext)
 
     def pick_match_skeletons(self, intext):
@@ -69,7 +69,7 @@ Protocol     = "HTTP/1.0"
 if argv[1:]:
     port = int(argv[1])
 else:
-    port = 8000
+    port = 80
 
 #NOT SURE IF THIS WORKS LOL
 server_address = ('127.0.0.1', port)
