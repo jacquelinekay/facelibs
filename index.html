@@ -36,6 +36,38 @@
   	margin-left: 12em;
   	margin-top: 0.5em;
   }
+  #Generate {
+  	float: left;
+  	background: #FF8000;
+  	border: none;
+  	font-size: 1.3em;
+  	padding: 1.3em 0.7em 1.3em 0.7em;
+  	font-family: 'Lato', sans-serif;
+    behavior: url(/css/border-radius.htc);
+    border-radius: 1em;
+    margin-top: 2em;
+    margin-left: 1em;
+  }
+  #Generate:hover{
+    border:6px solid #DF7401;
+    background:#FF8000;
+  }
+  #Post:hover{
+  	border:6px solid #D7DF01;
+  	background:#FFFF00;
+  }
+ #Post {
+   float: right;
+   background: #FFFF00;
+   border: none;
+   font-size: 1.3em;
+   padding: 1.3em 0.7em 1.3em 0.7em;
+   font-family: 'Lato', sans-serif;
+   behavior: url(/css/border-radius.htc);
+   border-radius: 1em;
+   margin-top: 2em;
+   margin-right: 1em;
+  }
   </style>
 </head>
 <body>
@@ -49,6 +81,8 @@
 <button onclick="logoutFunction()" type="button" id="logout">Logout</button>
 <div id="innerbox">
 <fb:login-button show-faces="true" id="login" max-rows="1" scope="user_status"></fb:login-button>
+<button type="button" id="Generate">Generate Story</button>
+<button type="button" id="Post">Post to Facebook</button>
 </div> <!-- end of inner box -->
 </body>
 </html>
