@@ -1,4 +1,5 @@
 var permissions = "read_stream,user_status,user_likes,user_friends,export_stream"
+var status = false;
 
 function makeHttpObject() {
     try {return new XMLHttpRequest();}
@@ -142,6 +143,7 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
       // The response object is returned with a status field that lets the app know the current
       // login status of the person. In this case, we're handling the situation where they 
       // have logged in to the app.
+      status = true;
       console.log(response);
       runApp(response);
     } else if (response.status === 'not_authorized') {
@@ -155,6 +157,7 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
        FB.login(function(response) {
           // handle the response
           console.log(response);
+          status = false;
           runApp(response);
       }, {scope:permissions});
     } else {
@@ -168,6 +171,7 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
           console.log(response);
           unhide('logoutclass');
           runApp(response);
+          status = true;
       }, {scope:permissions});
     }
   });
@@ -197,3 +201,10 @@ function runApp(response) {
         , parseResponse
     );
 }
+
+// hide logout button if logged out
+/*function hideLogout(status) {
+  if (status === false) {
+
+  }
+}*/
