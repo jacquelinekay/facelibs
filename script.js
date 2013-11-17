@@ -1,4 +1,4 @@
-//permissions = "read_stream,user_status,user_friends,export_stream"
+permissions = "read_stream,user_status,user_friends,export_stream"
 //var permissions = 'read_stream,user_status,publish_stream,export_stream'
 
 function makeHttpObject() {
