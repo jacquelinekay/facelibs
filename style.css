@@ -18,10 +18,11 @@
     text-align: left;s
   }
   #storybox {
-    background: #F7F8E0;
+    background: #F2F5A9;
     text-align: center;
-    width: 200%;
+    width: 100%;
     margin-top: 1em;
+    padding: 0.2em 0.2em 0.2em 0.2em;
     display: inline-block;
     overflow: scroll;
     font-size: 12px;
