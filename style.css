@@ -3,6 +3,9 @@
     width: 42em;
     overflow: hidden;
   }
+  #content {
+    overflow: hidden;
+  }
   body{
 	  background: lightblue;
 	  font-family: 'Lato', sans-serif;
@@ -50,7 +53,6 @@
   	display: block;
   	padding-top: 3em;
     overflow: hidden;
-    margin-left: 15em;
   }
   #Generate {
   	float: left;
