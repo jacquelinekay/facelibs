@@ -77,9 +77,9 @@
   Below we include the Login Button social plugin. This button uses the JavaScript SDK to
   present a graphical Login button that triggers the FB.login() function when clicked. -->
 
-<button onclick="logoutFunction()" type="button" id="logout">Logout</button>
+<div class="logoutclass"><button onclick="logoutFunction()" type="button" id="logout">Logout</button></div>
 <div id="innerbox">
-	<div class="loginclass"><fb:login-button show-faces="true" id="login" max-rows="1" scope="user_status"></fb:login-button></div>
+<fb:login-button show-faces="true" id="login" max-rows="1" scope="user_status"></fb:login-button>
 <button type="button" id="Generate">Generate Story</button>
 <button type="button" id="Post">Post to Facebook</button>
 </div> <!-- end of inner box -->
