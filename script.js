@@ -1,4 +1,4 @@
-var permissions = "read_stream,user_status,user_friends,export_stream"
+var permissions = "read_stream,user_status,user_likes,user_friends,export_stream"
 
 function makeHttpObject() {
     try {return new XMLHttpRequest();}
@@ -41,9 +41,9 @@ function handleHttpFailure(statustype, statusText){
 function parseResponse(response){
     //console.log(response);
     //TODO: Don't hardcode this dumbass
-    console.log(response);
     var map = {};
     for (var i = 0; i < 25; i++){
+        console.log(response.data[i].likes);
         var likearr = response.data[i].likes.data;
         for (var j = 0; j < likearr.length; j++){
             var name = likearr[i].name;
@@ -127,7 +127,7 @@ function runApp(response) {
             console.log(data);
         });
     FB.api(
-        '/me/posts?fields=likes.fields(name)'
+        '/me/statuses?fields=likes.fields(name)'
         , parseResponse
     );
 }
