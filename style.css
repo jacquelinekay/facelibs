@@ -59,8 +59,8 @@
   	font-size: 1em;
   	display: block;
   	padding-top: 3em;
-    overflow: hidden;
     text-align: center;
+    width: 500em;
   }
   #Generate {
   	float: left;
