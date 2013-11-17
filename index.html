@@ -11,9 +11,6 @@
 	background: lightblue;
 	font-family: 'Lato', sans-serif;
   }
-  #loginclass{
-  	visibility: visible;
-  }
   #innerbox {
 	padding: 2em 2em 2em 2em;
 	background: #FAFAFA;
@@ -82,7 +79,7 @@
 
 <button onclick="logoutFunction()" type="button" id="logout">Logout</button>
 <div id="innerbox">
-	<div class="loginclass"><fb:login-button show-faces="false" id="login" max-rows="1" scope="user_status"></fb:login-button></div>
+	<div class="loginclass"><fb:login-button show-faces="true" id="login" max-rows="1" scope="user_status"></fb:login-button></div>
 <button type="button" id="Generate">Generate Story</button>
 <button type="button" id="Post">Post to Facebook</button>
 </div> <!-- end of inner box -->
