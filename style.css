@@ -2,6 +2,7 @@
     height: 13em;
     width: 42em;
     overflow: hidden;
+    margin-left: 20em;
   }
   #content {
     overflow: hidden;
