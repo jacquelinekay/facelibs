@@ -122,6 +122,7 @@ function parseResponse(response){
     }
     console.log(names);
     //passage = passage.split(" ");
+    //putting names in passage, don't need 
     for (var i = 0; i < indices.length; i++){
         //parse the string
         var foo = indices[i].split(" ");
@@ -130,25 +131,14 @@ function parseResponse(response){
             passage[Number(foo[j])] = names[i];
         }
     }
+
     output = passage.join(" ");
+    //TODO: Put server request and get server response
+
+    //display line! good!
     document.getElementById("storybox").innerHtml = output;
     console.log(output);
 
-    //Acknowledge that if I were really programming, things might be different
-    /*for (var name in map){
-        if (name != 'length'){
-            if (i in indices){ 
-                names+= name+'/';
-            }
-            i++;
-        }
-    }
-    console.log(names)
-
-    //Um put them in a string and an HTTP request I guess
-    //NOTE: THIS IS THE OTHER EC2 INSTANCE
-    url = "ec2-54-226-78-114.compute-1.amazonaws.com:80"
-    faceLibsHttpRequest(url, names, requestSuccess, requestFailure);*/
 }
 
 window.fbAsyncInit = function() {
@@ -213,8 +203,6 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
     ref.parentNode.insertBefore(js, ref);
 }(document));
 
-  // Here we run a very simple test of the Graph API after login is successful. 
-  // This runApp() function is only called in those cases. 
 function runApp(response) {
     //make an HTTP request to get posts
     if(response.authResponse){
